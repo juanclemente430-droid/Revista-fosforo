@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/futura-pt');
+
 *{
     box-sizing: border-box;
 }
@@ -7,9 +9,14 @@ body{
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: rgb(255, 253, 249);
+    background-color: white;
     min-height: 100vh;
     overflow-x: hidden;
+}
+.main-wrapper {
+    background-color: black; /* NEGRO */
+    width: 100%;
+    min-height: calc(100vh - 65px);
 }
 
 h1{
@@ -29,8 +36,8 @@ p{
     width: 150px;
     padding: 10px 20px;
     border-radius: 5px;
-    border: 2px solid rgb(255, 255, 255);
-    color: white;
+    border: 2px solid black;
+    color: black;
     background-color:transparent;
     margin-top:20px;   
 }
@@ -58,14 +65,15 @@ button:hover{
 
 header {
     position: sticky;
-    top: 0;
-    left: 0;
+    top: 15px;
+    left: 20px;
     right: 0;
-    width: 100%;
+    width: calc(100% - 45px);
     z-index: 1000;
-    background-color: rgb(255, 253, 249);
+    background-color: black;
     margin: 0;
     padding: 0;
+    border-radius: 30px;
 }
 
 header .logo{
@@ -99,7 +107,7 @@ header .container{
     height: 65px;
     box-sizing: border-box; 
     position: relative;
-    --icon-toggle-menu: url(Imagenes/1png.svg);
+    --icon-toggle-menu: url(Imagenes/Menu.svg);
 }
 
 .nav_list{
@@ -107,7 +115,7 @@ header .container{
     width: 100%;
     height: 0;
     max-height: 0;
-    background-color: rgb(255, 253, 249);
+    background-color: black;
     padding: 0 5%;
     display: flex;
     flex-direction: column;
@@ -117,7 +125,6 @@ header .container{
     transition: all 0.5s ease;
     margin: 0;
     overflow: hidden;
-    box-sizing: border-box;
 }
 
 .nav_list li {
@@ -135,7 +142,7 @@ header .container{
 
 .social-link {
     font-size: 24px;
-    color: rgb(0, 0, 0);
+    color: white;
     transition: color 0.3s ease;
     text-decoration: none;
 }
@@ -191,17 +198,17 @@ header .container:has(.nav_input:checked){
 }
 
 .nav_link1{
-    color: rgb(0, 0, 0);
+    color: white;
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
 }
 .nav_link2{
-    color: rgb(0, 0, 0);
+    color: white;
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
 }
 .nav_link3{
-    color: rgb(0, 0, 0);
+    color: white;
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -222,37 +229,19 @@ header .container:has(.nav_input:checked){
     margin-top: -20px;
     box-sizing: border-box;
     font-family: "Times New Roman", serif;
+    background-color: white;
+    border-radius: 0 0 90px 90px;
 }
 #hero .dossier{
-    font-size:  0.90em;
+    font-size:  1.20em;
     color: brown;
     font-weight: bold;
 
 }
 #hero .textohero{
-    font-size: 1.10em;
+    font-size: 1.440em;
     color: black;
     font-weight: bold;
-}
-
-#hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-    linear-gradient(
-        0deg,
-        rgba(56, 56, 56, 0.199),
-        rgba(56, 56, 56, 0.199)
-    )
-    ,url(Imagenes/Hero.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    z-index: -1;
 }
 #apartados .carta1{
     margin-top: 30px;
@@ -289,9 +278,9 @@ header .container:has(.nav_input:checked){
     z-index: 2;
     order: 1;
     padding-bottom: 10px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
     width: 100%;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Futura PT';
 }
 
 .carta1 p{
@@ -301,7 +290,7 @@ header .container:has(.nav_input:checked){
     z-index: 2;
     order: 3;
     font-size: 1.2em;
-    color: black;
+    color: white;
     margin-top: -20px;
     text-align: left;
     font-family: 'Times New Roman', Times, serif;

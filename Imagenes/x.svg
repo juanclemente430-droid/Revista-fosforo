@@ -7,7 +7,7 @@
    width="23"
    height="23"
    viewBox="0 0 23 23"
-   sodipodi:docname="x.png"
+   sodipodi:docname="x.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -22,26 +22,18 @@
      inkscape:showpageshadow="2"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1">
-    <inkscape:page
-       x="0"
-       y="0"
-       width="23"
-       height="23"
-       id="page2"
-       margin="0"
-       bleed="0" />
-  </sodipodi:namedview>
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false" />
   <g
      inkscape:groupmode="layer"
      inkscape:label="Image"
      id="g1">
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:1.67811"
+       style="fill:none;stroke:#ffffff;stroke-width:1.67811;stroke-opacity:1"
        d="M 5.5943544,6.7030133 16.834354,17.983013"
        id="path1" />
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:1.67811"
+       style="fill:none;stroke:#ffffff;stroke-width:1.67811;stroke-opacity:1"
        d="M 16.706896,6.578815 5.7218125,18.107211"
        id="path1-4" />
   </g>
