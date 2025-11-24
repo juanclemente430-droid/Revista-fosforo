@@ -261,11 +261,7 @@ header .container:has(.nav_input:checked){
 }
 .carta1:nth-child(2){
     color: rgb(86,255, 76);
-    background: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
-    backdrop-filter: blur(10px); /* Esta es la clave - desenfoca lo que está detrás */
-    -webkit-backdrop-filter: blur(10px); /* Para Safari */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
-    border-radius: 35px;
+    
 }
 .carta1:nth-child(3){
     color: rgb(86,255, 76);

@@ -30,19 +30,6 @@
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
-       id="filter1736"
-       x="-1.0507553"
-       y="-1.0507553"
-       width="3.1015105"
-       height="3.1015105">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="17.885357"
-         id="feGaussianBlur1738" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
        id="filter1740"
        x="-1.0507553"
        y="-1.0507553"
@@ -95,13 +82,6 @@
        inkscape:export-filename="bitmap.svg"
        inkscape:export-xdpi="43.542854"
        inkscape:export-ydpi="43.542854" />
-    <circle
-       style="fill:#3aff0d;fill-opacity:1;stroke:#ffffff;stroke-width:1.065;filter:url(#filter1736)"
-       id="path1653"
-       cx="56.918129"
-       cy="52.580982"
-       r="20.679104"
-       transform="matrix(0.75430508,0,0,0.75430508,25.333669,25.453162)" />
     <circle
        style="fill:#3aff0d;fill-opacity:1;stroke:#ffffff;stroke-width:1.065;filter:url(#filter1748)"
        id="path1653-5"
