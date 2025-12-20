@@ -8,107 +8,183 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <header>
-        
-         <div class="container">
-
-                <figure class="nav_figure">
-                <a class="logo"> Revista FOSFORO </a>
-                </figure>
-
-                <label class="nav_toggel">
-                    <input type="checkbox" id="menu-input" class= "nav_input">
-                </label>
-                <div class="iniciosesion">
-                  <a href="{{ url_for('login') }}">
-                <img src= "Imagenes/Sesion.svg" alt="Descripción de la imagen" width="130" class="iniciose">
-               </a>
-                </div>  
+    <!-- Pantalla de carga -->
+    <div id="loading-screen">
+        <div class="animated-text">
+            <span class="letter">R</span>
+            <span class="letter">E</span>
+            <span class="letter">V</span>
+            <span class="letter">I</span>
+            <span class="letter">S</span>
+            <span class="letter">T</span>
+            <span class="letter">A</span>
+            <span class="letter space">&nbsp;</span>
+            <span class="letter">F</span>
+            <span class="letter">O</span>
+            <span class="letter">S</span>
+            <span class="letter">F</span>
+            <span class="letter">O</span>
+            <span class="letter">R</span>
+            <span class="letter">O</span>
         </div>
-            <ul class="nav_list">
-                <li class="nav_item">
-                    <a href="#" class="nav_link1">Sobre nosotros</a>
-                </li>
-                <li class="nav_item">
-                    <a href="#" class="nav_link2">Revistas</a>
-                </li>
-                <li class="nav_item">
-                    <a href="#"class="nav_link3">Articulos</a>
-                </li>
-                <li class="nav_item">
-                    <a href="#"class="nav_link3">Donaciones</a>
-                </li>
-                <li class="nav_item redes-sociales-menu">
-                    <a href="https://www.facebook.com/coaxolotl" target="_blank" class="social-link">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/axolotl_mx_/" target="_blank" class="social-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://x.com/co_axolotl" target="_blank" class="social-link">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                </li>
-            </ul>
-    </header>
-     <div class="main-wrapper">
-    <section id="hero">
-        <p> <span class="dossier"> DOSSIER</span><br><span class="textohero">PRIMER NUMERO DE LA REVISTA FOSFORO</span></p>
-        <button>Ver más</button>
-    </section>
-    <section id="apartados">
-        <div class="container">
-            <div class="carta1">
-                <div class="container">
-                 <div class="image-container"></div>
-                    <h2>Información</h2>
-                    <p><span class="Reforma">La Reforma Electoral Texto de prueba para la sección de conyunturas, 
-                        texto largo,para apreciar <br> como se ve</span></p>
-                </div>
-            </div>
-            <div class="carta1">
-                <div class="container">
-                 <div class="image-container"></div>
-                    <h2>Tema central</h2>
-                    <p><span class="Reforma">La Reforma Electoral</span> <br><br> Texto de prueba para la sección de conyunturas, 
-                        texto largo,para apreciar <br> como se ve</p>
-                </div>
-            </div>
-            <div class="carta1">
-                <div class="container">
-                    <div class="image-container"></div>
-                    <h2>Articulos destacados </h2>
-                    <p><span class="Reforma">La Reforma Electoral Texto de prueba para la sección de conyunturas, 
-                        texto largo,para apreciar <br> como se ve</span></p>
-                </div>
-            </div>
-            <div class="carta1">
-                <div class="container">
-                 <div class="image-container"></div>
-                    <h2>Numeros anteriores</h2>
-                    <p>Energias renovables</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="contacto">
-       <div class="carta">
-            <div class="container">
-                <h2>Sitios de interés</h2>
-            </div>
-        </div>
-        <div class="carta">
-            <div class="container-redes-sociales">
-
-            </div>
-        </div>
-        <div class="carta">
-            <p>&copy;Revista Fosforo</p>
-        </div>
-    </section>
     </div>
+    <header>  
+        <div class="container">
+            <figure class="nav_figure">
+                <a class="logo"> Revista FOSFORO </a>
+            </figure>
+
+            <label class="nav_toggel">
+                <input type="checkbox" id="menu-input" class="nav_input">
+            </label>
+            <div class="iniciosesion">
+                <a href="{{ url_for('login') }}">
+                    <img src="Imagenes/Sesion.svg" alt="Descripción de la imagen" width="130" class="iniciose">
+                </a>
+            </div>  
+        </div>
+        <ul class="nav_list">
+            <li class="nav_item">
+                <a href="index.html" class="nav_link2">Inicio</a>
+            </li>
+            <li class="nav_item has-dropdown">
+                <a href="#" class="nav_link1 dropdown-toggle">
+                    Acerca de la revista <span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="Enfoque.html" class="dropdown-link">Enfoque</a></li>
+                    <li><a href="#" class="dropdown-link">Secciones de la revista</a></li>
+                    <li><a href="#" class="dropdown-link">Equipo editorial</a></li>
+                    <li><a href="#" class="dropdown-link">Personas dictaminadoras</a></li>
+                    <li><a href="#" class="dropdown-link">Contacto</a></li>
+                </ul>
+            </li>
+            <li class="nav_item">
+                <a href="#" class="nav_link2">Catalogo</a>
+            </li>
+            <li class="nav_item">
+                <a href="#" class="nav_link3">Convocatorias</a>
+            </li>
+            <li class="nav_item has-dropdown">
+                <a href="#" class="nav_link3 dropdown-toggle">
+                    Publicar<span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="" class="dropdown-link"> Directrices para personas autoras</a></li>
+                </ul>
+            </li>
+            <li class="nav_item">
+                <a href="#" class="nav_link3">Donaciones</a>
+            </li>
+            <li class="nav_item redes-sociales-menu">
+                <a href="https://www.facebook.com/coaxolotl" target="_blank" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/axolotl_mx_/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/co_axolotl" target="_blank" class="social-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="main-wrapper">
+        <section id="hero">
+            <p> <span class="dossier"> DOSSIER</span><br><span class="textohero">PRIMER NUMERO DE LA REVISTA FOSFORO</span></p>
+            <button>Ver más</button>
+        </section>
+        <section id="apartados">
+            <div class="container">
+                <div class="carta1">
+                    <div class="container">
+                        <div class="image-container"></div>
+                        <h2>Información</h2>
+                        <p><span class="Reforma">La Reforma Electoral Texto de prueba para la sección de conyunturas, 
+                            texto largo,para apreciar <br> como se ve</span></p>
+                    </div>
+                </div>
+                <div class="carta1">
+                    <div class="container">
+                        <div class="image-container"></div>
+                        <h2>Tema central</h2>
+                        <p><span class="Reforma">La Reforma Electoral</span> <br><br> Texto de prueba para la sección de conyunturas, 
+                            texto largo,para apreciar <br> como se ve</p>
+                    </div>
+                </div>
+                <div class="carta1">
+                    <div class="container">
+                        <div class="image-container"></div>
+                        <h2>Articulos destacados </h2>
+                        <p><span class="Reforma">La Reforma Electoral Texto de prueba para la sección de conyunturas, 
+                            texto largo,para apreciar <br> como se ve</span></p>
+                    </div>
+                </div>
+                <div class="carta1">
+                    <div class="container">
+                        <div class="image-container"></div>
+                        <h2>Numeros anteriores</h2>
+                        <p>Energias renovables</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contacto">
+            <div class="carta">
+                <div class="container">
+                    <h2>Sitios de interés</h2>
+                </div>
+            </div>
+            <div class="carta">
+                <div class="container-redes-sociales">
+                </div>
+            </div>
+            <div class="carta">
+                <p>&copy;Revista Fosforo</p>
+            </div>
+        </section>
+    </div>
+    <script>
+        // Esperar a que termine la animación de las letras y luego mostrar el contenido
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // Ocultar pantalla de carga
+            loadingScreen.classList.add('fade-out');
+            
+            // Mostrar contenido principal
+            setTimeout(() => {
+                mainContent.classList.add('show');
+            }, 300);
+        }, 2500);
+
+        // Menú desplegable
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const menuItem = this.parentElement;
+                    const dropdown = menuItem.querySelector('.dropdown');
+                    
+                    // Toggle del dropdown
+                    menuItem.classList.toggle('active');
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Cerrar dropdown al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav_item.has-dropdown')) {
+                    document.querySelectorAll('.nav_item.has-dropdown.active').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.dropdown').classList.remove('active');
+                    });
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
-
-
