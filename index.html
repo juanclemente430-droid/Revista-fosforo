@@ -53,7 +53,7 @@
                 </a>
                 <ul class="dropdown">
                     <li><a href="Enfoque.html" class="dropdown-link">Enfoque</a></li>
-                    <li><a href="#" class="dropdown-link">Secciones de la revista</a></li>
+                    <li><a href="Seccionesdelarevista.html" class="dropdown-link">Secciones de la revista</a></li>
                     <li><a href="#" class="dropdown-link">Equipo editorial</a></li>
                     <li><a href="#" class="dropdown-link">Personas dictaminadoras</a></li>
                     <li><a href="#" class="dropdown-link">Contacto</a></li>
@@ -90,10 +90,31 @@
         </ul>
     </header>
     <div class="main-wrapper">
-        <section id="hero">
-            <p> <span class="dossier"> DOSSIER</span><br><span class="textohero">PRIMER NUMERO DE LA REVISTA FOSFORO</span></p>
-            <button>Ver más</button>
-        </section>
+
+        <div class="slider-container">
+            <div  class="slider-wrapper" id="sliderWrapper">
+                <div class="slide slide-1">
+                    <div class="slide-content">
+                        <p> <span class="dossier"> DOSSIER</span><br><span class="textohero">PRIMER NUMERO DE LA REVISTA FOSFORO</span></p>
+                        <button>Ver más</button>
+                    </div>
+                </div>
+                <div class="slide slide-2">
+                    <div class="slide-content">
+                        <p> <span class="dossier"> DOSSIER</span><br><span class="textohero">PRIMER NUMERO DE LA REVISTA FOSFORO</span></p>
+                        <button>Ver más</button>
+                    </div>
+                </div>                  
+             </div>
+
+            <button class="arrow2 arrow22-left" id="prevBtn">‹</button>
+            <button class="arrow2 arrow23-right" id="nextBtn">›</button>
+
+            <!-- Indicadores -->
+            <div class="dots-container" id="dotsContainer"></div>
+        </div>
+
+
         <section id="apartados">
             <div class="container">
                 <div class="carta1">
@@ -185,6 +206,103 @@
                 }
             });
         });
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dotsContainer');
+        
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let currentSlide = 0;
+        let autoSlideInterval;
+
+        // Crear indicadores (dots)
+        function createDots() {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Actualizar indicadores
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Ir a un slide específico
+        function goToSlide(index) {
+            currentSlide = index;
+            const offset = -currentSlide * 100;
+            sliderWrapper.style.transform = `translateX(${offset}%)`;
+            updateDots();
+            resetAutoSlide();
+        }
+
+        // Siguiente slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        // Slide anterior
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        // Auto-slide (cambio automático)
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            startAutoSlide();
+        }
+
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Pausar auto-slide al pasar el mouse
+        sliderWrapper.addEventListener('mouseenter', () => {
+            clearInterval(autoSlideInterval);
+        });
+
+        sliderWrapper.addEventListener('mouseleave', () => {
+            startAutoSlide();
+        });
+
+        // Soporte para touch (móviles)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        sliderWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        sliderWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchStartX - touchEndX > 50) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > 50) {
+                prevSlide();
+            }
+        }
+
+        // Inicializar
+        createDots();
+        startAutoSlide();
     </script>
 </body>
 </html>

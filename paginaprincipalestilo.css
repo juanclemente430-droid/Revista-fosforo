@@ -27,13 +27,111 @@ h1{
     margin-bottom: .20em;
 }
 h2{font-size: 2.0em;}
-h3{font-size: 1.0em;}
+h3{font-size: 1.1em;}
 p{
     font-size:  1.0em;
     line-height: 1.4;
     margin-bottom: .20em;
 }
-#hero button{
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    margin: 0;
+}
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    color: black;
+    font-family: "Times New Roman", serif;
+    border-radius: 0 0 90px 90px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 20px;
+}
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    text-align: center;
+}
+
+
+.slide-1 {
+    background-color: white;
+}
+.slide-2 {
+    background: white;
+}
+.arrow2 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    color: black;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 10;
+}
+
+.arrow2:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.arrow22-left {
+    left: 20px;
+}
+
+.arrow23-right {
+    right: 20px;
+}
+
+/* Indicadores (dots) */
+.dots-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: black;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: black;
+    width: 30px;
+    border-radius: 6px;
+    }
+
+.slide-content button{
     font-family: "Times New Roman";
     font-size: 1em;
     width: 150px;
@@ -44,20 +142,7 @@ p{
     background-color:transparent;
     margin-top:20px;   
 }
-#hero button:hover{
-     background-color:rgb(87, 87, 87);
-}
-button{
-    font-size: 1em;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 15px;
-    border: 4px solid black;
-    color: black;
-    background-color:transparent;
-}
-
-button:hover{
+.slide-content button:hover{
      background-color:rgb(87, 87, 87);
 }
 
@@ -288,31 +373,12 @@ header .container:has(.nav_input:checked){
     font-family: 'Times New Roman', Times, serif;
 }
 
-#hero{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    text-align: left;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 55px;
-    padding-right: 55px;
-    padding-top: 20px;
-    height: 400px;
-    width: 100%;
-    margin: 0;
-    margin-top: -20px;
-    box-sizing: border-box;
-    font-family: "Times New Roman", serif;
-    background-color: white;
-    border-radius: 0 0 90px 90px;
-}
-#hero .dossier{
+.slide-content .dossier{
     font-size:  1.20em;
     color: brown;
     font-weight: bold;
 }
-#hero .textohero{
+.slide-content .textohero{
     font-size: 1.440em;
     color: black;
     font-weight: bold;
@@ -477,16 +543,64 @@ header .container:has(.nav_input:checked){
 #apartados .Acercade{
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
     font-family: 'Times New Roman', Times, serif;
 }
 #apartados .AcercadeUl{
     margin-top: 30px;
-    margin-bottom: 240px;
-    padding: 20px;
+    margin-bottom: 30px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 25px;
     font-family: 'Times New Roman', Times, serif;
 }
+.Numerosrecientes:first-child .image-container{
+    width: 450px;
+    height: 450px;
+    background-image: url(Imagenes/prueba4.jpeg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    margin-bottom: 5px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+}
 
+.Acercade .Numerosrecientes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 300px;
+    position: relative;
+    padding: 5px;
+    justify-content: space-between;
+    margin-top: -50px;
+}
+.Numerosrecientes p{
+    order: 2;
+    margin-bottom: 30px;
+}
+.Acercade button{
+    border: 1px solid black;
+    Font-family: "Times New Roman";
+    font-size: 1em;
+    width: 150px;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: rgb(0, 10, 148);
+    background-color:rgba(226, 226, 226, 0.795);
+    margin-top:20px;
+}
+#Numerosrecientes{
+    margin-bottom: 45px;
+}
 /* Pantalla de carga */
 #loading-screen {
     position: fixed;
