@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="paginaprincipalestilo.css">
+    <title>Revista FOSFORO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<section id="Videos">
+    <header>  
+        <div class="container">
+            <figure class="nav_figure">
+                <a class="logo"> Revista FOSFORO </a>
+            </figure>
+
+            <label class="nav_toggel">
+                <input type="checkbox" id="menu-input" class="nav_input">
+            </label>
+            <div class="iniciosesion">
+                <a href="{{ url_for('login') }}">
+                    <img src="Imagenes/Sesion.svg" alt="Descripción de la imagen" width="130" class="iniciose">
+                </a>
+            </div>  
+        </div>
+        <ul class="nav_list">
+            <li class="nav_item">
+                <a href="index.html" class="nav_link2">Inicio</a>
+            </li>
+            <li class="nav_item has-dropdown">
+                <a href="#" class="nav_link1 dropdown-toggle">
+                    Acerca de la revista <span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="Enfoque.html" class="dropdown-link">Enfoque</a></li>
+                    <li><a href="Seccionesdelarevista.html" class="dropdown-link">Secciones de la revista</a></li>
+                    <li><a href="#" class="dropdown-link">Equipo editorial</a></li>
+                    <li><a href="#" class="dropdown-link">Personas dictaminadoras</a></li>
+                    <li><a href="#" class="dropdown-link">Contacto</a></li>
+                </ul>
+            </li>
+            <li class="nav_item">
+                <a href="#" class="nav_link2">Catalogo</a>
+            </li>
+            <li class="nav_item">
+                <a href="Videos.html" class="nav_link2">Videos</a>
+            </li>
+            <li class="nav_item">
+                <a href="#" class="nav_link3">Convocatorias</a>
+            </li>
+            <li class="nav_item has-dropdown">
+                <a href="#" class="nav_link3 dropdown-toggle">
+                    Publicar<span class="arrow">▼</span>
+                </a>
+                <ul class="dropdown">
+                    <li><a href="" class="dropdown-link"> Lineamientos para el envio de colaboraciones</a></li>
+                </ul>
+            </li>
+            <li class="nav_item">
+                <a href="#" class="nav_link3">Donaciones</a>
+            </li>
+            <li class="nav_item redes-sociales-menu">
+                <a href="https://www.facebook.com/coaxolotl" target="_blank" class="social-link">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/axolotl_mx_/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://x.com/co_axolotl" target="_blank" class="social-link">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+  <!-- ===== CONTENEDOR PRINCIPAL ===== -->
+  <div class="containerV">
+
+    <!-- ===== GRID DE VIDEOS ===== -->
+    <div class="video-grid" id="videoGrid">
+      <!-- Los videos se generan dinámicamente con JavaScript -->
+    </div>
+
+  </div>
+
+  <!-- ===== MODAL DE REPRODUCCIÓN ===== -->
+  <div class="modal hidden" id="videoModal">
+    
+    <!-- Botón cerrar -->
+    <button class="close-button" id="closeModal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Buscador decorativo -->
+    <div class="search-bar">
+      <input type="text" class="search-input" placeholder="Buscar contenido relacionado">
+    </div>
+
+    <!-- Contenedor del video -->
+    <div class="video-container">
+      <video id="modalVideo" controls autoplay></video>
+      
+      <!-- Info del video -->
+      <div class="modal-video-info">
+        <h3 class="modal-video-title" id="modalTitle"></h3>
+        <div class="modal-video-stats">
+          <div class="modal-video-likes">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span id="modalLikes"></span>
+          </div>
+          <span class="modal-video-date" id="modalDate"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>  
+<script>
+        // Esperar a que termine la animación de las letras y luego mostrar el contenido
+        setTimeout(() => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // Ocultar pantalla de carga
+            loadingScreen.classList.add('fade-out');
+            
+            // Mostrar contenido principal
+            setTimeout(() => {
+                mainContent.classList.add('show');
+            }, 300);
+        }, 2500);
+
+        // Menú desplegable
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+            
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const menuItem = this.parentElement;
+                    const dropdown = menuItem.querySelector('.dropdown');
+                    
+                    // Toggle del dropdown
+                    menuItem.classList.toggle('active');
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Cerrar dropdown al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.nav_item.has-dropdown')) {
+                    document.querySelectorAll('.nav_item.has-dropdown.active').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.dropdown').classList.remove('active');
+                    });
+                }
+            });
+        });
+       // ===== DATOS DE LOS VIDEOS =====
+    const videos = [
+      {
+        id: 1,
+        thumbnail: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=600&fit=crop',
+        title: 'Pruba 1.0',
+        date: '2025-5-2',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 2,
+        thumbnail: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=600&fit=crop',
+        title: 'Prueba 2.0',
+        likes: '27.7K',
+        date: '2025-5-12',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 3,
+        thumbnail: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=600&fit=crop',
+        title: 'Prueba 3.0',
+        date: '2025-5-12',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 4,
+        thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=600&fit=crop',
+        title: 'Prubea 4.0',
+        date: '2022-9-6',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 5,
+        thumbnail: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=600&fit=crop',
+        title: 'Prueba 5.0',
+        date: '2024-5-19',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 6,
+        thumbnail: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=600&fit=crop',
+        title: 'Prueba 5.0',
+        date: '2023-3-19',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 7,
+        thumbnail: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=600&fit=crop',
+        title: 'Prueba 6.0',
+        date: '2024-11-23',
+        videoUrl: './Videos/Video1.mp4' 
+      },
+      {
+        id: 8,
+        thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop',
+        title: 'Prueba 7.0',
+        date: '2025-12-23',
+        videoUrl: './Videos/Video1.mp4' 
+      }
+    ];
+
+    // ===== ELEMENTOS DEL DOM =====
+    const videoGrid = document.getElementById('videoGrid');
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalLikes = document.getElementById('modalLikes');
+    const modalDate = document.getElementById('modalDate');
+
+    // ===== FUNCIÓN: GENERAR TARJETAS DE VIDEO =====
+    function generateVideoCards() {
+      videos.forEach(video => {
+        // Crear tarjeta
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        
+        // HTML de la tarjeta
+        card.innerHTML = `
+          <img src="${video.thumbnail}" alt="${video.title}">
+          
+          <div class="video-overlay"></div>
+          
+          <div class="play-button">
+            <div class="play-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+          </div>
+          
+          <div class="video-info">
+            <p class="video-title">${video.title}</p>
+            <div class="video-stats">
+              <div class="video-likes">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span>${video.likes}</span>
+              </div>
+              <span>${video.date}</span>
+            </div>
+          </div>
+        `;
+        
+        // Evento click para abrir modal
+        card.addEventListener('click', () => openModal(video));
+        
+        // Agregar al grid
+        videoGrid.appendChild(card);
+      });
+    }
+
+ // ===== FUNCIÓN: ABRIR MODAL =====
+    function openModal(video) {
+      modalVideo.src = video.videoUrl;
+      modalTitle.textContent = video.title;
+      modalLikes.textContent = video.likes;
+      modalDate.textContent = video.date;
+      videoModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      
+      // Ocultar el header
+      const header = document.querySelector('header');
+      if (header) {
+        header.style.opacity = '0';
+        header.style.pointerEvents = 'none';
+        header.style.visibility = 'hidden';
+      }
+    }
+
+    // ===== FUNCIÓN: CERRAR MODAL =====
+    function closeModal() {
+      modalVideo.pause();
+      modalVideo.src = '';
+      videoModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      
+      // Mostrar el header nuevamente con un pequeño delay
+      setTimeout(() => {
+        const header = document.querySelector('header');
+        if (header) {
+          header.style.opacity = '1';
+          header.style.pointerEvents = 'auto';
+          header.style.visibility = 'visible';
+        }
+      }, 50);
+    }
+
+
+    // ===== EVENTOS =====
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    // Cerrar modal al hacer click fuera del video
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) {
+        closeModal();
+      }
+    });
+
+    // Cerrar modal con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // ===== INICIALIZAR =====
+    generateVideoCards();
+    </script>   
+</body>
+</html>
