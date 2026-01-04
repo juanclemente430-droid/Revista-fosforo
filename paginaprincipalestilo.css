@@ -850,24 +850,45 @@ header .container:has(.nav_input:checked){
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: 90%;
   max-width: 28rem;
   padding: 0 1rem;
+  z-index: 20;
+}
+
+@media (max-width: 640px) {
+  .search-bar {
+    width: calc(100% - 6rem);
+    max-width: none;
+  }
 }
 
 .search-input {
   width: 100%;
-  background-color: rgba(31, 41, 55, 0.5);
+  background-color: rgba(31, 41, 55, 0.9);
   backdrop-filter: blur(8px);
   border: 1px solid #374151;
   border-radius: 9999px;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   color: white;
   outline: none;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .search-input {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.813rem;
+  }
 }
 
 .search-input::placeholder {
   color: #9ca3af;
+}
+
+.search-input:focus {
+  border-color: #6b7280;
+  background-color: rgba(31, 41, 55, 1);
 }
 
 /* ===== CONTENEDOR DEL VIDEO ===== */

@@ -108,8 +108,6 @@
         <h3 class="modal-video-title" id="modalTitle"></h3>
         <div class="modal-video-stats">
           <div class="modal-video-likes">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
             <span id="modalLikes"></span>
           </div>
@@ -173,7 +171,6 @@
         id: 2,
         thumbnail: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=600&fit=crop',
         title: 'Prueba 2.0',
-        likes: '27.7K',
         date: '2025-5-12',
         videoUrl: './Videos/Video1.mp4' 
       },
@@ -221,6 +218,12 @@
       }
     ];
 
+    // ===== VARIABLES GLOBALES =====
+    let currentVideo = null;
+    let userLikes = {}; // Almacena qué videos le han gustado al usuario
+    let allVideos = [...videos]; // Copia de todos los videos
+    let filteredVideos = [...videos]; // Videos filtrados por búsqueda
+
     // ===== ELEMENTOS DEL DOM =====
     const videoGrid = document.getElementById('videoGrid');
     const videoModal = document.getElementById('videoModal');
@@ -229,10 +232,26 @@
     const modalTitle = document.getElementById('modalTitle');
     const modalLikes = document.getElementById('modalLikes');
     const modalDate = document.getElementById('modalDate');
+    const likeButton = document.getElementById('likeButton');
+    const likeCount = document.getElementById('likeCount');
+    const searchInput = document.getElementById('searchInput');
 
     // ===== FUNCIÓN: GENERAR TARJETAS DE VIDEO =====
-    function generateVideoCards() {
-      videos.forEach(video => {
+      function generateVideoCards() {
+      videoGrid.innerHTML = ''; // Limpiar grid
+      
+      // Si no hay videos filtrados, mostrar mensaje
+      if (filteredVideos.length === 0) {
+        videoGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #9ca3af;">
+            <p style="font-size: 1.125rem;">No se encontraron videos</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">Intenta con otro término de búsqueda</p>
+          </div>
+        `;
+        return;
+      }
+      
+      filteredVideos.forEach(video => {
         // Crear tarjeta
         const card = document.createElement('div');
         card.className = 'video-card';
@@ -254,12 +273,6 @@
           <div class="video-info">
             <p class="video-title">${video.title}</p>
             <div class="video-stats">
-              <div class="video-likes">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-                <span>${video.likes}</span>
-              </div>
               <span>${video.date}</span>
             </div>
           </div>
@@ -271,6 +284,21 @@
         // Agregar al grid
         videoGrid.appendChild(card);
       });
+    }
+
+    // ===== FUNCIÓN: FILTRAR VIDEOS =====
+    function filterVideos(searchTerm) {
+      const term = searchTerm.toLowerCase().trim();
+      
+      if (term === '') {
+        filteredVideos = [...allVideos];
+      } else {
+        filteredVideos = allVideos.filter(video => 
+          video.title.toLowerCase().includes(term)
+        );
+      }
+      
+      generateVideoCards();
     }
 
  // ===== FUNCIÓN: ABRIR MODAL =====
@@ -296,7 +324,7 @@
       modalVideo.pause();
       modalVideo.src = '';
       videoModal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = 'auto'; // Restaurar scroll      
       
       // Mostrar el header nuevamente con un pequeño delay
       setTimeout(() => {
@@ -307,11 +335,16 @@
           header.style.visibility = 'visible';
         }
       }, 50);
+            // Limpiar búsqueda al cerrar modal
+      searchInput.value = '';
+      filteredVideos = [...allVideos];
+      generateVideoCards();
     }
 
 
     // ===== EVENTOS =====
     closeModalBtn.addEventListener('click', closeModal);
+
     
     // Cerrar modal al hacer click fuera del video
     videoModal.addEventListener('click', (e) => {
