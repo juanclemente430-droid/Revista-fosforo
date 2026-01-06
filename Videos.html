@@ -12,7 +12,9 @@
     <header>  
         <div class="container">
             <figure class="nav_figure">
-                <a class="logo"> Revista FOSFORO </a>
+            <a href="index.html" class="logo">
+                <img src="Imagenes/Logo.png" alt="Revista FOSFORO" class="logo-img">
+            </a>
             </figure>
 
             <label class="nav_toggel">
@@ -53,6 +55,9 @@
                 <a href="#" class="nav_link3 dropdown-toggle">
                     Publicar<span class="arrow">▼</span>
                 </a>
+                <ul class="dropdown">
+                    <li><a href="Bases.html" class="dropdown-link"> Bases</a></li>
+                </ul>
                 <ul class="dropdown">
                     <li><a href="" class="dropdown-link"> Lineamientos para el envio de colaboraciones</a></li>
                 </ul>
@@ -98,12 +103,12 @@
     <div class="search-bar">
       <input type="text" class="search-input" placeholder="Buscar contenido relacionado">
     </div>
-
-    <!-- Contenedor del video -->
+    
+    <!-- Contenedor del video 
     <div class="video-container">
       <video id="modalVideo" controls autoplay></video>
       
-      <!-- Info del video -->
+      Info del video 
       <div class="modal-video-info">
         <h3 class="modal-video-title" id="modalTitle"></h3>
         <div class="modal-video-stats">
@@ -114,7 +119,7 @@
           <span class="modal-video-date" id="modalDate"></span>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 </section>  
 <script>
@@ -158,6 +163,7 @@
                 }
             });
         });
+        /*
        // ===== DATOS DE LOS VIDEOS =====
     const videos = [
       {
@@ -217,7 +223,7 @@
         videoUrl: './Videos/Video1.mp4' 
       }
     ];
-
+*/
     // ===== VARIABLES GLOBALES =====
     let currentVideo = null;
     let userLikes = {}; // Almacena qué videos le han gustado al usuario
