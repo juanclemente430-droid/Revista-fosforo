@@ -994,7 +994,9 @@ header .container:has(.nav_input:checked){
 .sidebar-section {
     width: 100%;
 }
-
+#NA{
+    font-size: 1.8em;
+}
 /* ===== MEDIA QUERY PARA PANTALLAS GRANDES ===== */
 @media (min-width: 720px) {
     /* Layout de dos columnas */
